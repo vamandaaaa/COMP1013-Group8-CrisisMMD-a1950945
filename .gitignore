@@ -8,3 +8,14 @@ data/
 *.csv
 audit_output/
 .cache/
+
+models/
+
+# Include aggregate training history for reproducibility
+!results/experiments/*/training_history.csv
+
+# Additional local files
+*.pt
+*.pth
+.ipynb_checkpoints/
+.pytest_cache/

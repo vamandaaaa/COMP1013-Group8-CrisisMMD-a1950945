@@ -1,0 +1,408 @@
+{
+  "seed": 42,
+  "device": "cpu",
+  "epochs_max": 35,
+  "patience": 6,
+  "batch_size": 128,
+  "hidden": 128,
+  "dropout": 0.5,
+  "learning_rate": 0.0003,
+  "labels": [
+    "affected_individuals",
+    "infrastructure_and_utility_damage",
+    "not_humanitarian",
+    "other_relevant_information",
+    "rescue_volunteering_or_donation_effort"
+  ],
+  "class_weights": [
+    2.4944,
+    0.8503,
+    0.3701,
+    0.5884,
+    0.6968
+  ],
+  "split_sizes": {
+    "train": 6093,
+    "dev": 994
+  },
+  "encoder_features": "Frozen BERT 768D + EfficientNet-B0 1280D from group cache",
+  "evaluation": "dev only; test not accessed",
+  "results": {
+    "text_only": {
+      "best_epoch": 20,
+      "train": {
+        "accuracy": 0.9232,
+        "macro_f1": 0.9231,
+        "weighted_f1": 0.9234
+      },
+      "dev": {
+        "accuracy": 0.7928,
+        "macro_f1": 0.7198,
+        "weighted_f1": 0.793,
+        "per_class": {
+          "affected_individuals": {
+            "precision": 0.625,
+            "recall": 0.5555555555555556,
+            "f1-score": 0.5882352941176471,
+            "support": 9.0
+          },
+          "infrastructure_and_utility_damage": {
+            "precision": 0.6019417475728155,
+            "recall": 0.775,
+            "f1-score": 0.6775956284153005,
+            "support": 80.0
+          },
+          "not_humanitarian": {
+            "precision": 0.8576923076923076,
+            "recall": 0.861003861003861,
+            "f1-score": 0.859344894026975,
+            "support": 518.0
+          },
+          "other_relevant_information": {
+            "precision": 0.7616822429906542,
+            "recall": 0.6820083682008368,
+            "f1-score": 0.7196467991169978,
+            "support": 239.0
+          },
+          "rescue_volunteering_or_donation_effort": {
+            "precision": 0.7516778523489933,
+            "recall": 0.7567567567567568,
+            "f1-score": 0.7542087542087542,
+            "support": 148.0
+          },
+          "accuracy": 0.7927565392354124,
+          "macro avg": {
+            "precision": 0.719598830120954,
+            "recall": 0.726064908303402,
+            "f1-score": 0.7198062739771349,
+            "support": 994.0
+          },
+          "weighted avg": {
+            "precision": 0.7961321261698772,
+            "recall": 0.7927565392354124,
+            "f1-score": 0.7930190177445815,
+            "support": 994.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            5,
+            1,
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            62,
+            10,
+            6,
+            1
+          ],
+          [
+            1,
+            11,
+            446,
+            38,
+            22
+          ],
+          [
+            0,
+            22,
+            42,
+            163,
+            12
+          ],
+          [
+            1,
+            7,
+            21,
+            7,
+            112
+          ]
+        ]
+      }
+    },
+    "image_only": {
+      "best_epoch": 8,
+      "train": {
+        "accuracy": 0.8851,
+        "macro_f1": 0.8862,
+        "weighted_f1": 0.8852
+      },
+      "dev": {
+        "accuracy": 0.7817,
+        "macro_f1": 0.6341,
+        "weighted_f1": 0.7808,
+        "per_class": {
+          "affected_individuals": {
+            "precision": 0.16666666666666666,
+            "recall": 0.1111111111111111,
+            "f1-score": 0.13333333333333333,
+            "support": 9.0
+          },
+          "infrastructure_and_utility_damage": {
+            "precision": 0.7,
+            "recall": 0.7875,
+            "f1-score": 0.7411764705882353,
+            "support": 80.0
+          },
+          "not_humanitarian": {
+            "precision": 0.825,
+            "recall": 0.8281853281853282,
+            "f1-score": 0.8265895953757225,
+            "support": 518.0
+          },
+          "other_relevant_information": {
+            "precision": 0.7860262008733624,
+            "recall": 0.7531380753138075,
+            "f1-score": 0.7692307692307693,
+            "support": 239.0
+          },
+          "rescue_volunteering_or_donation_effort": {
+            "precision": 0.697986577181208,
+            "recall": 0.7027027027027027,
+            "f1-score": 0.7003367003367004,
+            "support": 148.0
+          },
+          "accuracy": 0.7816901408450704,
+          "macro avg": {
+            "precision": 0.6351358889442473,
+            "recall": 0.6365274434625899,
+            "f1-score": 0.6341333737729522,
+            "support": 994.0
+          },
+          "weighted avg": {
+            "precision": 0.7806964541564912,
+            "recall": 0.7816901408450704,
+            "f1-score": 0.780848605178741,
+            "support": 994.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            1,
+            2,
+            2,
+            0,
+            4
+          ],
+          [
+            0,
+            63,
+            9,
+            3,
+            5
+          ],
+          [
+            3,
+            13,
+            429,
+            43,
+            30
+          ],
+          [
+            0,
+            5,
+            48,
+            180,
+            6
+          ],
+          [
+            2,
+            7,
+            32,
+            3,
+            104
+          ]
+        ]
+      }
+    },
+    "early_fusion": {
+      "best_epoch": 5,
+      "train": {
+        "accuracy": 0.9344,
+        "macro_f1": 0.9397,
+        "weighted_f1": 0.9345
+      },
+      "dev": {
+        "accuracy": 0.8501,
+        "macro_f1": 0.7517,
+        "weighted_f1": 0.8512,
+        "per_class": {
+          "affected_individuals": {
+            "precision": 0.36363636363636365,
+            "recall": 0.4444444444444444,
+            "f1-score": 0.4,
+            "support": 9.0
+          },
+          "infrastructure_and_utility_damage": {
+            "precision": 0.7659574468085106,
+            "recall": 0.9,
+            "f1-score": 0.8275862068965517,
+            "support": 80.0
+          },
+          "not_humanitarian": {
+            "precision": 0.9030303030303031,
+            "recall": 0.862934362934363,
+            "f1-score": 0.8825271470878578,
+            "support": 518.0
+          },
+          "other_relevant_information": {
+            "precision": 0.8277310924369747,
+            "recall": 0.8242677824267782,
+            "f1-score": 0.8259958071278826,
+            "support": 239.0
+          },
+          "rescue_volunteering_or_donation_effort": {
+            "precision": 0.8012820512820513,
+            "recall": 0.8445945945945946,
+            "f1-score": 0.8223684210526315,
+            "support": 148.0
+          },
+          "accuracy": 0.8501006036217303,
+          "macro avg": {
+            "precision": 0.7323274514388405,
+            "recall": 0.7752482368800362,
+            "f1-score": 0.7516955164329847,
+            "support": 994.0
+          },
+          "weighted avg": {
+            "precision": 0.8538596525847943,
+            "recall": 0.8501006036217303,
+            "f1-score": 0.8511866025780562,
+            "support": 994.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            4,
+            2,
+            1,
+            0,
+            2
+          ],
+          [
+            0,
+            72,
+            5,
+            2,
+            1
+          ],
+          [
+            3,
+            9,
+            447,
+            36,
+            23
+          ],
+          [
+            0,
+            7,
+            30,
+            197,
+            5
+          ],
+          [
+            4,
+            4,
+            12,
+            3,
+            125
+          ]
+        ]
+      }
+    },
+    "late_fusion": {
+      "text_probability_weight": 0.65,
+      "dev": {
+        "accuracy": 0.835,
+        "macro_f1": 0.7733,
+        "weighted_f1": 0.8341,
+        "per_class": {
+          "affected_individuals": {
+            "precision": 0.7142857142857143,
+            "recall": 0.5555555555555556,
+            "f1-score": 0.625,
+            "support": 9.0
+          },
+          "infrastructure_and_utility_damage": {
+            "precision": 0.7096774193548387,
+            "recall": 0.825,
+            "f1-score": 0.7630057803468208,
+            "support": 80.0
+          },
+          "not_humanitarian": {
+            "precision": 0.8714555765595463,
+            "recall": 0.88996138996139,
+            "f1-score": 0.8806112702960841,
+            "support": 518.0
+          },
+          "other_relevant_information": {
+            "precision": 0.8160377358490566,
+            "recall": 0.7238493723849372,
+            "f1-score": 0.7671840354767184,
+            "support": 239.0
+          },
+          "rescue_volunteering_or_donation_effort": {
+            "precision": 0.8169934640522876,
+            "recall": 0.8445945945945946,
+            "f1-score": 0.8305647840531561,
+            "support": 148.0
+          },
+          "accuracy": 0.8350100603621731,
+          "macro avg": {
+            "precision": 0.7856899820202887,
+            "recall": 0.7677921824992955,
+            "f1-score": 0.7732731740345559,
+            "support": 994.0
+          },
+          "weighted avg": {
+            "precision": 0.8355782748314554,
+            "recall": 0.8350100603621731,
+            "f1-score": 0.8341073168610865,
+            "support": 994.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            5,
+            1,
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            66,
+            7,
+            5,
+            1
+          ],
+          [
+            1,
+            7,
+            461,
+            32,
+            17
+          ],
+          [
+            0,
+            16,
+            42,
+            173,
+            8
+          ],
+          [
+            0,
+            3,
+            18,
+            2,
+            125
+          ]
+        ]
+      },
+      "note": "Weight selected on dev; not a separately trained neural network"
+    }
+  }
+}

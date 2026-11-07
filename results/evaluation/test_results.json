@@ -1,0 +1,622 @@
+{
+  "test_samples": 951,
+  "selected_from_dev": {
+    "text_only": "d05_lr0003",
+    "image_only": "d03_lr003",
+    "early_fusion": "d05_lr003",
+    "late_fusion": "d05_lr001"
+  },
+  "late_fusion_E4_text_weight": 0.5,
+  "labels": [
+    "affected_individuals",
+    "infrastructure_and_utility_damage",
+    "not_humanitarian",
+    "other_relevant_information",
+    "rescue_volunteering_or_donation_effort"
+  ],
+  "model_results": {
+    "text_only": {
+      "accuracy": 0.79285,
+      "macro_f1": 0.74555,
+      "weighted_f1": 0.79321,
+      "per_class": {
+        "affected_individuals": {
+          "precision": 0.66667,
+          "recall": 0.66667,
+          "f1-score": 0.66667,
+          "support": 9
+        },
+        "infrastructure_and_utility_damage": {
+          "precision": 0.70455,
+          "recall": 0.76543,
+          "f1-score": 0.73373,
+          "support": 81
+        },
+        "not_humanitarian": {
+          "precision": 0.84413,
+          "recall": 0.834,
+          "f1-score": 0.83903,
+          "support": 500
+        },
+        "other_relevant_information": {
+          "precision": 0.75758,
+          "recall": 0.74468,
+          "f1-score": 0.75107,
+          "support": 235
+        },
+        "rescue_volunteering_or_donation_effort": {
+          "precision": 0.72868,
+          "recall": 0.74603,
+          "f1-score": 0.73725,
+          "support": 126
+        }
+      },
+      "confusion_matrix": [
+        [
+          6,
+          0,
+          1,
+          1,
+          1
+        ],
+        [
+          2,
+          62,
+          10,
+          6,
+          1
+        ],
+        [
+          0,
+          13,
+          417,
+          45,
+          25
+        ],
+        [
+          0,
+          9,
+          43,
+          175,
+          8
+        ],
+        [
+          1,
+          4,
+          23,
+          4,
+          94
+        ]
+      ]
+    },
+    "image_only": {
+      "accuracy": 0.7918,
+      "macro_f1": 0.71189,
+      "weighted_f1": 0.79218,
+      "per_class": {
+        "affected_individuals": {
+          "precision": 0.42857,
+          "recall": 0.66667,
+          "f1-score": 0.52174,
+          "support": 9
+        },
+        "infrastructure_and_utility_damage": {
+          "precision": 0.70213,
+          "recall": 0.81481,
+          "f1-score": 0.75429,
+          "support": 81
+        },
+        "not_humanitarian": {
+          "precision": 0.82937,
+          "recall": 0.836,
+          "f1-score": 0.83267,
+          "support": 500
+        },
+        "other_relevant_information": {
+          "precision": 0.8371,
+          "recall": 0.78723,
+          "f1-score": 0.8114,
+          "support": 235
+        },
+        "rescue_volunteering_or_donation_effort": {
+          "precision": 0.66102,
+          "recall": 0.61905,
+          "f1-score": 0.63934,
+          "support": 126
+        }
+      },
+      "confusion_matrix": [
+        [
+          6,
+          0,
+          2,
+          0,
+          1
+        ],
+        [
+          2,
+          66,
+          7,
+          2,
+          4
+        ],
+        [
+          4,
+          18,
+          418,
+          28,
+          32
+        ],
+        [
+          0,
+          4,
+          43,
+          185,
+          3
+        ],
+        [
+          2,
+          6,
+          34,
+          6,
+          78
+        ]
+      ]
+    },
+    "early_fusion": {
+      "accuracy": 0.86751,
+      "macro_f1": 0.8003,
+      "weighted_f1": 0.8681,
+      "per_class": {
+        "affected_individuals": {
+          "precision": 0.5,
+          "recall": 0.66667,
+          "f1-score": 0.57143,
+          "support": 9
+        },
+        "infrastructure_and_utility_damage": {
+          "precision": 0.86047,
+          "recall": 0.91358,
+          "f1-score": 0.88623,
+          "support": 81
+        },
+        "not_humanitarian": {
+          "precision": 0.90121,
+          "recall": 0.894,
+          "f1-score": 0.89759,
+          "support": 500
+        },
+        "other_relevant_information": {
+          "precision": 0.86667,
+          "recall": 0.82979,
+          "f1-score": 0.84783,
+          "support": 235
+        },
+        "rescue_volunteering_or_donation_effort": {
+          "precision": 0.7803,
+          "recall": 0.81746,
+          "f1-score": 0.79845,
+          "support": 126
+        }
+      },
+      "confusion_matrix": [
+        [
+          6,
+          0,
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          74,
+          1,
+          5,
+          0
+        ],
+        [
+          4,
+          5,
+          447,
+          21,
+          23
+        ],
+        [
+          0,
+          5,
+          31,
+          195,
+          4
+        ],
+        [
+          1,
+          2,
+          17,
+          3,
+          103
+        ]
+      ]
+    },
+    "late_fusion": {
+      "accuracy": 0.87592,
+      "macro_f1": 0.84701,
+      "weighted_f1": 0.8755,
+      "per_class": {
+        "affected_individuals": {
+          "precision": 0.85714,
+          "recall": 0.66667,
+          "f1-score": 0.75,
+          "support": 9
+        },
+        "infrastructure_and_utility_damage": {
+          "precision": 0.89412,
+          "recall": 0.93827,
+          "f1-score": 0.91566,
+          "support": 81
+        },
+        "not_humanitarian": {
+          "precision": 0.89087,
+          "recall": 0.898,
+          "f1-score": 0.89442,
+          "support": 500
+        },
+        "other_relevant_information": {
+          "precision": 0.85897,
+          "recall": 0.85532,
+          "f1-score": 0.85714,
+          "support": 235
+        },
+        "rescue_volunteering_or_donation_effort": {
+          "precision": 0.83471,
+          "recall": 0.80159,
+          "f1-score": 0.81781,
+          "support": 126
+        }
+      },
+      "confusion_matrix": [
+        [
+          6,
+          0,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          76,
+          2,
+          2,
+          0
+        ],
+        [
+          0,
+          7,
+          449,
+          26,
+          18
+        ],
+        [
+          0,
+          1,
+          32,
+          201,
+          1
+        ],
+        [
+          0,
+          1,
+          20,
+          4,
+          101
+        ]
+      ]
+    }
+  },
+  "bootstrap_macro_f1": {
+    "method": "Class-stratified paired bootstrap",
+    "repetitions": 2000,
+    "model_macro_f1_95ci": {
+      "text_only": [
+        0.68542,
+        0.79949
+      ],
+      "image_only": [
+        0.65704,
+        0.765
+      ],
+      "early_fusion": [
+        0.74368,
+        0.85396
+      ],
+      "late_fusion": [
+        0.7832,
+        0.89148
+      ]
+    },
+    "paired_macro_f1_difference": {
+      "early_fusion_minus_text_only": {
+        "point_estimate": 0.05475,
+        "ci95": [
+          -0.00505,
+          0.11478
+        ],
+        "ci_excludes_zero": false
+      },
+      "early_fusion_minus_image_only": {
+        "point_estimate": 0.08842,
+        "ci95": [
+          0.0187,
+          0.1594
+        ],
+        "ci_excludes_zero": true
+      },
+      "late_fusion_minus_text_only": {
+        "point_estimate": 0.10146,
+        "ci95": [
+          0.04452,
+          0.15464
+        ],
+        "ci_excludes_zero": true
+      },
+      "late_fusion_minus_image_only": {
+        "point_estimate": 0.13512,
+        "ci95": [
+          0.05389,
+          0.20524
+        ],
+        "ci_excludes_zero": true
+      },
+      "early_fusion_minus_late_fusion": {
+        "point_estimate": -0.0467,
+        "ci95": [
+          -0.10075,
+          0.0141
+        ],
+        "ci_excludes_zero": false
+      }
+    },
+    "limitation": "Does not account for event-level or near-duplicate clustering."
+  },
+  "mcnemar_accuracy": {
+    "early_vs_text": {
+      "a_correct_b_wrong": 107,
+      "a_wrong_b_correct": 36,
+      "p_value_unadjusted": 2.2533836638015286e-09,
+      "note": "McNemar tests paired accuracy, not macro-F1."
+    },
+    "early_vs_late": {
+      "a_correct_b_wrong": 34,
+      "a_wrong_b_correct": 42,
+      "p_value_unadjusted": 0.42219110499231566,
+      "note": "McNemar tests paired accuracy, not macro-F1."
+    },
+    "late_vs_text": {
+      "a_correct_b_wrong": 97,
+      "a_wrong_b_correct": 18,
+      "p_value_unadjusted": 2.792528455178105e-14,
+      "note": "McNemar tests paired accuracy, not macro-F1."
+    }
+  },
+  "by_event": {
+    "california_wildfires": {
+      "samples": 78,
+      "classes_present": [
+        "infrastructure_and_utility_damage",
+        "not_humanitarian",
+        "other_relevant_information",
+        "rescue_volunteering_or_donation_effort"
+      ],
+      "models": {
+        "text_only": {
+          "accuracy": 0.75641,
+          "macro_f1_present_classes": 0.68637
+        },
+        "image_only": {
+          "accuracy": 0.74359,
+          "macro_f1_present_classes": 0.63872
+        },
+        "early_fusion": {
+          "accuracy": 0.76923,
+          "macro_f1_present_classes": 0.68689
+        },
+        "late_fusion": {
+          "accuracy": 0.82051,
+          "macro_f1_present_classes": 0.79396
+        }
+      }
+    },
+    "hurricane_harvey": {
+      "samples": 246,
+      "classes_present": [
+        "affected_individuals",
+        "infrastructure_and_utility_damage",
+        "not_humanitarian",
+        "other_relevant_information",
+        "rescue_volunteering_or_donation_effort"
+      ],
+      "models": {
+        "text_only": {
+          "accuracy": 0.8374,
+          "macro_f1_present_classes": 0.74186
+        },
+        "image_only": {
+          "accuracy": 0.82114,
+          "macro_f1_present_classes": 0.76197
+        },
+        "early_fusion": {
+          "accuracy": 0.89837,
+          "macro_f1_present_classes": 0.80681
+        },
+        "late_fusion": {
+          "accuracy": 0.91463,
+          "macro_f1_present_classes": 0.86926
+        }
+      }
+    },
+    "hurricane_irma": {
+      "samples": 215,
+      "classes_present": [
+        "affected_individuals",
+        "infrastructure_and_utility_damage",
+        "not_humanitarian",
+        "other_relevant_information",
+        "rescue_volunteering_or_donation_effort"
+      ],
+      "models": {
+        "text_only": {
+          "accuracy": 0.69767,
+          "macro_f1_present_classes": 0.54479
+        },
+        "image_only": {
+          "accuracy": 0.77674,
+          "macro_f1_present_classes": 0.79121
+        },
+        "early_fusion": {
+          "accuracy": 0.85581,
+          "macro_f1_present_classes": 0.67481
+        },
+        "late_fusion": {
+          "accuracy": 0.82791,
+          "macro_f1_present_classes": 0.65823
+        }
+      }
+    },
+    "hurricane_maria": {
+      "samples": 230,
+      "classes_present": [
+        "affected_individuals",
+        "infrastructure_and_utility_damage",
+        "not_humanitarian",
+        "other_relevant_information",
+        "rescue_volunteering_or_donation_effort"
+      ],
+      "models": {
+        "text_only": {
+          "accuracy": 0.84348,
+          "macro_f1_present_classes": 0.84666
+        },
+        "image_only": {
+          "accuracy": 0.79565,
+          "macro_f1_present_classes": 0.72459
+        },
+        "early_fusion": {
+          "accuracy": 0.9,
+          "macro_f1_present_classes": 0.89094
+        },
+        "late_fusion": {
+          "accuracy": 0.9,
+          "macro_f1_present_classes": 0.84616
+        }
+      }
+    },
+    "iraq_iran_earthquake": {
+      "samples": 23,
+      "classes_present": [
+        "affected_individuals",
+        "infrastructure_and_utility_damage",
+        "not_humanitarian",
+        "other_relevant_information",
+        "rescue_volunteering_or_donation_effort"
+      ],
+      "models": {
+        "text_only": {
+          "accuracy": 0.69565,
+          "macro_f1_present_classes": 0.68492
+        },
+        "image_only": {
+          "accuracy": 0.6087,
+          "macro_f1_present_classes": 0.64667
+        },
+        "early_fusion": {
+          "accuracy": 0.78261,
+          "macro_f1_present_classes": 0.79242
+        },
+        "late_fusion": {
+          "accuracy": 0.78261,
+          "macro_f1_present_classes": 0.74737
+        }
+      }
+    },
+    "mexico_earthquake": {
+      "samples": 79,
+      "classes_present": [
+        "infrastructure_and_utility_damage",
+        "not_humanitarian",
+        "other_relevant_information",
+        "rescue_volunteering_or_donation_effort"
+      ],
+      "models": {
+        "text_only": {
+          "accuracy": 0.63291,
+          "macro_f1_present_classes": 0.6126
+        },
+        "image_only": {
+          "accuracy": 0.75949,
+          "macro_f1_present_classes": 0.73215
+        },
+        "early_fusion": {
+          "accuracy": 0.74684,
+          "macro_f1_present_classes": 0.75008
+        },
+        "late_fusion": {
+          "accuracy": 0.77215,
+          "macro_f1_present_classes": 0.76029
+        }
+      }
+    },
+    "srilanka_floods": {
+      "samples": 80,
+      "classes_present": [
+        "infrastructure_and_utility_damage",
+        "not_humanitarian",
+        "other_relevant_information",
+        "rescue_volunteering_or_donation_effort"
+      ],
+      "models": {
+        "text_only": {
+          "accuracy": 0.9875,
+          "macro_f1_present_classes": 0.91499
+        },
+        "image_only": {
+          "accuracy": 0.8625,
+          "macro_f1_present_classes": 0.46851
+        },
+        "early_fusion": {
+          "accuracy": 0.95,
+          "macro_f1_present_classes": 0.61163
+        },
+        "late_fusion": {
+          "accuracy": 1.0,
+          "macro_f1_present_classes": 1.0
+        }
+      }
+    }
+  },
+  "near_duplicate_sensitivity": {
+    "candidate_pairs": 219,
+    "flagged_test_images": 41,
+    "remaining_test_samples": 910,
+    "subset_sensitivity": {
+      "class_support": {
+        "affected_individuals": 9,
+        "infrastructure_and_utility_damage": 80,
+        "not_humanitarian": 481,
+        "other_relevant_information": 217,
+        "rescue_volunteering_or_donation_effort": 123
+      },
+      "macro_f1": {
+        "text_only": 0.74545,
+        "image_only": 0.71086,
+        "early_fusion": 0.7989,
+        "late_fusion": 0.84735
+      }
+    },
+    "limitation": "Exploratory check, not proof of zero visual leakage."
+  },
+  "limitations": [
+    "The test set was previously inspected during an earlier project run.",
+    "Affected individuals has only nine test examples.",
+    "Within-event evaluation is not unseen-event generalisation.",
+    "Near-duplicate candidates may remain across splits."
+  ]
+}

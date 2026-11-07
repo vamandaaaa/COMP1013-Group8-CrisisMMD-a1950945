@@ -1,0 +1,105 @@
+{
+  "dataset": "CrisisMMD agreed-label five-class humanitarian task",
+  "policy": {
+    "placeholder": "Exclude reviewed feature groups 1-3 only (18 agreed-task images).",
+    "cross_split_exact_pixels": "Exclude lower-priority split (train < dev < test); no label edits.",
+    "ambiguous_phash": "Retained for review; pHash <= 6 alone is insufficient to confirm duplicates.",
+    "pixel_definition": "Image decoded as RGB with EXIF orientation applied; SHA-256 of dimensions plus pixels.",
+    "original_files_modified": false
+  },
+  "verified_placeholder_groups": {
+    "1": {
+      "cache_size": 33,
+      "agreed_ids": 9
+    },
+    "2": {
+      "cache_size": 30,
+      "agreed_ids": 6
+    },
+    "3": {
+      "cache_size": 8,
+      "agreed_ids": 3
+    }
+  },
+  "before": {
+    "train": {
+      "rows": 6126,
+      "labels": {
+        "affected_individuals": 71,
+        "infrastructure_and_utility_damage": 612,
+        "not_humanitarian": 3252,
+        "other_relevant_information": 1279,
+        "rescue_volunteering_or_donation_effort": 912
+      }
+    },
+    "dev": {
+      "rows": 998,
+      "labels": {
+        "affected_individuals": 9,
+        "infrastructure_and_utility_damage": 80,
+        "not_humanitarian": 521,
+        "other_relevant_information": 239,
+        "rescue_volunteering_or_donation_effort": 149
+      }
+    },
+    "test": {
+      "rows": 955,
+      "labels": {
+        "affected_individuals": 9,
+        "infrastructure_and_utility_damage": 81,
+        "not_humanitarian": 504,
+        "other_relevant_information": 235,
+        "rescue_volunteering_or_donation_effort": 126
+      }
+    }
+  },
+  "after": {
+    "train": {
+      "rows": 6093,
+      "labels": {
+        "affected_individuals": 71,
+        "infrastructure_and_utility_damage": 611,
+        "not_humanitarian": 3225,
+        "other_relevant_information": 1276,
+        "rescue_volunteering_or_donation_effort": 910
+      }
+    },
+    "dev": {
+      "rows": 994,
+      "labels": {
+        "affected_individuals": 9,
+        "infrastructure_and_utility_damage": 80,
+        "not_humanitarian": 518,
+        "other_relevant_information": 239,
+        "rescue_volunteering_or_donation_effort": 148
+      }
+    },
+    "test": {
+      "rows": 951,
+      "labels": {
+        "affected_individuals": 9,
+        "infrastructure_and_utility_damage": 81,
+        "not_humanitarian": 500,
+        "other_relevant_information": 235,
+        "rescue_volunteering_or_donation_effort": 126
+      }
+    }
+  },
+  "excluded_rows": 41,
+  "excluded_by_reason": {
+    "placeholder_by_split": {
+      "train": 13,
+      "test": 4,
+      "dev": 1
+    },
+    "cross_split_exact_pixels_by_split": {
+      "train": 20,
+      "dev": 3
+    }
+  },
+  "phash_pairs_total": 287,
+  "phash_pairs_with_placeholder": 42,
+  "cross_split_exact_pixel_pairs": 26,
+  "unresolved_phash_pairs": 219,
+  "caveat": "Unresolved pHash candidates may contain near-duplicates. This is not a guarantee of zero visual leakage."
+}
