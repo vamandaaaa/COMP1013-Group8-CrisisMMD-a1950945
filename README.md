@@ -397,3 +397,9 @@ The repository focuses on scripts and aggregate experimental results rather than
 ## Further Information
 
 See [RESULTS.md](RESULTS.md) for the full experimental results, statistical comparisons, visualisations and interpretation.
+
+## Experiment Figure Gallery
+
+All available training curves and experimental figures are indexed in [FIGURES.md](FIGURES.md).
+
+The original baseline figures and later development experiments represent different evaluations and should not be treated as interchangeable.
