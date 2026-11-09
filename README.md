@@ -6,7 +6,7 @@ COMP1013 Multi-Modal Data Analysis — Group 8
 
 This project investigates whether combining information from social media text and images improves the classification of disaster-related posts.
 
-We use the CrisisMMD dataset to classify text-image pairs into five humanitarian categories. We compare two unimodal baselines with two multimodal fusion approaches:
+We use the CrisisMMD dataset to classify text-image pairs into five humanitarian categories. Our original benchmark compares two unimodal baselines with two multimodal fusion approaches:
 
 1. Text-only classification using BERT features.
 2. Image-only classification using EfficientNet-B0 features.
@@ -48,7 +48,7 @@ The original images, metadata and pretrained feature caches are not included in 
 
 ### Feature Extraction
 
-The project uses pretrained, frozen feature representations provided through the group cache:
+The original benchmark uses pretrained, frozen feature representations provided through the group cache:
 
 | Modality | Encoder | Feature dimension |
 |---|---|---:|
@@ -101,7 +101,7 @@ The other settings were held constant:
 
 The best configuration for each approach was selected using development macro-F1.
 
-## Main Results
+## Original Baseline Test Results
 
 The selected models were evaluated on 951 cleaned test samples.
 
@@ -162,6 +162,9 @@ The implementation uses Python 3.13 and the following main libraries:
 - SciPy
 - Matplotlib
 - Pillow
+- torchvision
+- Transformers
+- safetensors
 
 Install the required Python packages using:
 
@@ -186,7 +189,7 @@ Place the CrisisMMD image directory under:
 data/raw/data_image/
 ```
 
-The group feature cache must contain the pretrained BERT and EfficientNet-B0 feature arrays. The repository does not currently implement feature extraction from raw images and text.
+The group feature cache must contain the pretrained BERT and EfficientNet-B0 feature arrays. Additional scripts now extract frozen ResNet-50 and ViT image features and BERT token features. The original BERT and EfficientNet-B0 group cache is still needed for the baseline.
 
 ### 1. Audit the Dataset
 
@@ -280,6 +283,91 @@ data/evaluation/test_predictions.csv
 
 Individual test predictions are retained locally.
 
+## Extended Experiments (Train/Dev Only)
+
+Following the original baseline, we conducted additional
+experiments using 6,093 cleaned training and 994 development
+pairs. The original official test was not accessed in these
+additional experiments.
+
+### Models and methods
+
+- Image encoder comparison: EfficientNet-B0, ResNet-50,
+  and ViT-B/16 with frozen pooled BERT representations.
+- Cross-attention: BERT token representations attend to
+  ViT image patches using PyTorch MultiheadAttention.
+- Pooled fusion: averaged BERT tokens and ViT patches,
+  without cross-attention.
+- Modality dropout: randomly zeroed text or image features
+  during training, with probability 0.15 per modality.
+- Missing-modality evaluation: development stress tests
+  using zeroed text or image features.
+- Leave-one-event-out evaluation: disaster events held out
+  from fold fitting using cleaned train/dev data.
+
+### Development macro-F1
+
+The following values are means across seeds 42, 43 and 44.
+
+| Model | Mean macro-F1 |
+|---|---:|
+| ResNet-50 early fusion | 0.8102 |
+| ViT-B/16 early fusion | 0.8053 |
+| EfficientNet-B0 early fusion | 0.7888 |
+| Token/patch pooled fusion | 0.7827 |
+| Pooled fusion with modality dropout | 0.7536 |
+| Cross-attention | 0.7487 |
+
+These results are not official test scores. The encoder
+comparison and token/patch models also use different text
+representations and training settings, so this table is
+not a fully controlled architectural comparison.
+
+### Unseen-event experiment
+
+Leave-one-event-out pooled macro-F1:
+
+- Text-only: 0.6410
+- Image-only: 0.6123
+- Early fusion: 0.7499
+- Late fusion: 0.7014
+
+This experiment holds events out within the train/dev
+portion. It is not a completely untouched external
+benchmark because these data had been used during
+earlier project development.
+
+### Additional Python scripts
+
+- extract_image_features.py
+- extract_text_tokens.py
+- compare_image_encoders.py
+- train_cross_attention.py
+- train_pooled_fusion.py
+- train_modality_dropout.py
+- evaluate_missing_modality.py
+- evaluate_dropout_robustness.py
+- evaluate_unseen_events.py
+
+Additional feature extraction examples:
+
+```bash
+python extract_image_features.py --model resnet50 --device mps
+python extract_image_features.py --model vit_b_16 --device mps
+python extract_text_tokens.py --device mps
+python compare_image_encoders.py --device mps --seed 42
+```
+
+These commands require the cleaned splits and local source
+data. Use CPU instead of MPS on unsupported computers.
+
+Training checkpoints, original posts, images and feature
+caches remain local and are not distributed on GitHub.
+
+The original baseline test results above were obtained
+earlier. The test data had already been inspected, so they
+should not be described as a pristine blind evaluation.
+
 ## Limitations
 
 The results should be interpreted with several limitations in mind:
@@ -288,11 +376,11 @@ The results should be interpreted with several limitations in mind:
 - The affected-individuals class has only nine test examples.
 - Some unresolved visually similar images may remain across splits.
 - The models use frozen pretrained features rather than end-to-end encoder fine-tuning.
-- Hyperparameter experiments were conducted using one random seed.
-- Per-event analysis is not equivalent to unseen-event evaluation.
+- Original baseline hyperparameter experiments used one seed. The later encoder and fusion experiments used seeds 42, 43 and 44.
+- Original per-event breakdowns were descriptive. A separate leave-one-event-out experiment was subsequently conducted using train/dev data.
 - The test split had been inspected in an earlier project run and is therefore not a completely untouched blind test.
 
-The additional image encoders, token-level cross-attention and unseen-event testing considered during the proposal stage were not implemented in the final experiments.
+Additional image encoders, cross-attention, and leave-one-event-out evaluation were subsequently implemented and evaluated on the cleaned train/dev data.
 
 The findings support the usefulness of multimodal feature fusion on the evaluated CrisisMMD splits, but do not establish generalisation to all future disasters.
 

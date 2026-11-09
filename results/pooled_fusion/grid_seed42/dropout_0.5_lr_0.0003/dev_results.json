@@ -1,0 +1,84 @@
+{
+  "model": "BERT token and ViT patch pooled fusion",
+  "seed": 42,
+  "training_samples": 6093,
+  "development_samples": 994,
+  "selected_epoch": 6,
+  "hidden": 128,
+  "heads": null,
+  "dropout": 0.5,
+  "learning_rate": 0.0003,
+  "batch_size": 32,
+  "labels": [
+    "affected_individuals",
+    "infrastructure_and_utility_damage",
+    "not_humanitarian",
+    "other_relevant_information",
+    "rescue_volunteering_or_donation_effort"
+  ],
+  "class_weights": [
+    2.494421464648703,
+    0.8503121882404331,
+    0.3701128382200363,
+    0.58840136582066,
+    0.6967521430701675
+  ],
+  "train": {
+    "loss": 0.26190758120753427,
+    "accuracy": 0.9048087969801412,
+    "macro_f1": 0.9006477575480083,
+    "weighted_f1": 0.9058589196333048
+  },
+  "dev": {
+    "loss": 0.4772590238083776,
+    "accuracy": 0.8430583501006036,
+    "macro_f1": 0.7462586795962989,
+    "weighted_f1": 0.8435163164286809,
+    "per_class": {
+      "affected_individuals": {
+        "precision": 0.42857142857142855,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.375,
+        "support": 9.0
+      },
+      "infrastructure_and_utility_damage": {
+        "precision": 0.9014084507042254,
+        "recall": 0.8,
+        "f1-score": 0.847682119205298,
+        "support": 80.0
+      },
+      "not_humanitarian": {
+        "precision": 0.8913480885311871,
+        "recall": 0.8552123552123552,
+        "f1-score": 0.8729064039408867,
+        "support": 518.0
+      },
+      "other_relevant_information": {
+        "precision": 0.7602996254681648,
+        "recall": 0.8493723849372385,
+        "f1-score": 0.8023715415019763,
+        "support": 239.0
+      },
+      "rescue_volunteering_or_donation_effort": {
+        "precision": 0.8223684210526315,
+        "recall": 0.8445945945945946,
+        "f1-score": 0.8333333333333334,
+        "support": 148.0
+      },
+      "accuracy": 0.8430583501006036,
+      "macro avg": {
+        "precision": 0.7607992028655274,
+        "recall": 0.7365025336155043,
+        "f1-score": 0.7462586795962989,
+        "support": 994.0
+      },
+      "weighted avg": {
+        "precision": 0.8461873899148055,
+        "recall": 0.8430583501006036,
+        "f1-score": 0.8435163164286809,
+        "support": 994.0
+      }
+    }
+  },
+  "official_test_accessed": false
+}

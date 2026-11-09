@@ -1,9 +1,11 @@
-# Dependencies for CrisisMMD classification
+# CrisisMMD project dependencies
 # Python 3.13
-
 numpy==2.5.4
 Pillow==13.0.0
 matplotlib==3.11.2
 scikit-learn==1.9.1
 scipy==1.18.1
 torch==2.15.0
+torchvision==0.29.2
+transformers==5.22.2
+safetensors==0.8.0

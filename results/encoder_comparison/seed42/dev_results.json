@@ -1,0 +1,152 @@
+{
+  "description": "Frozen image encoder comparison",
+  "official_test_accessed": false,
+  "seed": 42,
+  "device": "mps",
+  "epochs_max": 35,
+  "patience": 6,
+  "batch_size": 128,
+  "hidden": 128,
+  "dropout": 0.5,
+  "learning_rate": 0.001,
+  "labels": [
+    "affected_individuals",
+    "infrastructure_and_utility_damage",
+    "not_humanitarian",
+    "other_relevant_information",
+    "rescue_volunteering_or_donation_effort"
+  ],
+  "split_sizes": {
+    "train": 6093,
+    "dev": 994
+  },
+  "encoder_dimensions": {
+    "efficientnet_b0": 1280,
+    "resnet50": 2048,
+    "vit_b_16": 768
+  },
+  "class_weights": [
+    2.494421464648703,
+    0.8503121882404331,
+    0.3701128382200363,
+    0.58840136582066,
+    0.6967521430701675
+  ],
+  "results": {
+    "text_only": {
+      "best_epoch": 9,
+      "train": {
+        "accuracy": 0.9314,
+        "macro_f1": 0.9363,
+        "weighted_f1": 0.9316
+      },
+      "dev": {
+        "accuracy": 0.7847,
+        "macro_f1": 0.7176,
+        "weighted_f1": 0.785
+      }
+    },
+    "efficientnet_b0_image_only": {
+      "best_epoch": 4,
+      "train": {
+        "accuracy": 0.8845,
+        "macro_f1": 0.8768,
+        "weighted_f1": 0.885
+      },
+      "dev": {
+        "accuracy": 0.7757,
+        "macro_f1": 0.6526,
+        "weighted_f1": 0.7763
+      }
+    },
+    "efficientnet_b0_early_fusion": {
+      "best_epoch": 3,
+      "train": {
+        "accuracy": 0.9488,
+        "macro_f1": 0.9495,
+        "weighted_f1": 0.9488
+      },
+      "dev": {
+        "accuracy": 0.8531,
+        "macro_f1": 0.7779,
+        "weighted_f1": 0.8531
+      }
+    },
+    "efficientnet_b0_late_fusion": {
+      "dev": {
+        "macro_f1": 0.7607,
+        "accuracy": 0.829
+      },
+      "text_probability_weight": 0.6,
+      "note": "Alpha selected on dev; no separate network"
+    },
+    "resnet50_image_only": {
+      "best_epoch": 3,
+      "train": {
+        "accuracy": 0.905,
+        "macro_f1": 0.8906,
+        "weighted_f1": 0.9049
+      },
+      "dev": {
+        "accuracy": 0.7847,
+        "macro_f1": 0.6473,
+        "weighted_f1": 0.7844
+      }
+    },
+    "resnet50_early_fusion": {
+      "best_epoch": 19,
+      "train": {
+        "accuracy": 0.9997,
+        "macro_f1": 0.9998,
+        "weighted_f1": 0.9997
+      },
+      "dev": {
+        "accuracy": 0.8602,
+        "macro_f1": 0.8192,
+        "weighted_f1": 0.86
+      }
+    },
+    "resnet50_late_fusion": {
+      "dev": {
+        "macro_f1": 0.746,
+        "accuracy": 0.8199
+      },
+      "text_probability_weight": 0.7,
+      "note": "Alpha selected on dev; no separate network"
+    },
+    "vit_b_16_image_only": {
+      "best_epoch": 3,
+      "train": {
+        "accuracy": 0.8666,
+        "macro_f1": 0.848,
+        "weighted_f1": 0.8665
+      },
+      "dev": {
+        "accuracy": 0.7827,
+        "macro_f1": 0.6561,
+        "weighted_f1": 0.7819
+      }
+    },
+    "vit_b_16_early_fusion": {
+      "best_epoch": 6,
+      "train": {
+        "accuracy": 0.9785,
+        "macro_f1": 0.9832,
+        "weighted_f1": 0.9786
+      },
+      "dev": {
+        "accuracy": 0.8682,
+        "macro_f1": 0.8218,
+        "weighted_f1": 0.8687
+      }
+    },
+    "vit_b_16_late_fusion": {
+      "dev": {
+        "macro_f1": 0.7451,
+        "accuracy": 0.8129
+      },
+      "text_probability_weight": 0.8,
+      "note": "Alpha selected on dev; no separate network"
+    }
+  }
+}
