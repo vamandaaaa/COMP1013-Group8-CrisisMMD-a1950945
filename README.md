@@ -128,29 +128,89 @@ For complete experimental tables, learning curves, confusion matrices, confidenc
 
 ## Repository Structure
 
-```text
-.
-├── README.md
-├── RESULTS.md
-├── requirements.txt
-├── .gitignore
-├── crisismmd_audit.py
-├── visual_review.py
-├── prepare_clean_splits.py
-├── train_models.py
-├── evaluate_models.py
-├── results/
-│   ├── data_quality/
-│   ├── experiments/
-│   └── evaluation/
-└── figures/
-    ├── d03_lr001/
-    ├── d05_lr001/
-    ├── d05_lr003/
-    └── test_confusion_matrices.png
-```
+The Python scripts are grouped below by their role in the
+project. The baseline experiments and later development
+experiments are kept separate.
 
-Dataset files, model checkpoints, cached embeddings and individual predictions are stored locally rather than committed to GitHub.
+### Dataset preparation
+
+| File | Purpose |
+|---|---|
+| `crisismmd_audit.py` | Checks dataset quality, cached features and possible duplicate images. |
+| `visual_review.py` | Creates contact sheets for manually reviewing suspicious images and placeholders. |
+| `prepare_clean_splits.py` | Removes confirmed placeholders and exact image duplicates, then prepares cleaned splits. |
+
+### Feature extraction
+
+| File | Purpose |
+|---|---|
+| `extract_image_features.py` | Extracts frozen ResNet-50 and ViT-B/16 image features. ViT patch features are also saved for fusion. |
+| `extract_text_tokens.py` | Extracts frozen BERT token embeddings and attention masks for token-based fusion. |
+
+The initial BERT pooled features and EfficientNet-B0 features
+come from the group's shared feature cache. The new extraction
+scripts use cleaned training and development data only.
+
+### Model training
+
+| File | Purpose |
+|---|---|
+| `train_models.py` | Trains text-only, image-only and early-fusion baseline classifiers. Late fusion combines the unimodal predictions. |
+| `compare_image_encoders.py` | Compares EfficientNet-B0, ResNet-50 and ViT-B/16 using matching classifier settings. |
+| `train_cross_attention.py` | Trains a model where BERT text tokens attend to ViT image patches. |
+| `train_pooled_fusion.py` | Trains a simpler fusion model using averaged text tokens and image patches. |
+| `train_modality_dropout.py` | Trains pooled fusion while randomly removing text or image features. |
+
+### Model evaluation
+
+| File | Purpose |
+|---|---|
+| `evaluate_models.py` | Evaluates development-selected baseline models on the cleaned official test split. Includes statistical comparisons. |
+| `evaluate_unseen_events.py` | Performs leave-one-event-out evaluation using cleaned training and development data. |
+| `evaluate_missing_modality.py` | Measures performance when text or image embeddings are set to zero. |
+| `evaluate_dropout_robustness.py` | Compares pooled fusion with and without modality dropout across three seeds. |
+
+The later encoder, token/patch and robustness experiments
+use development data for evaluation and model selection.
+Their results should not be confused with the initial
+baseline official test results.
+
+### Documentation and experiment results
+
+| File or folder | Contents |
+|---|---|
+| `README.md` | Project overview, methodology, setup and reproduction instructions. |
+| `RESULTS.md` | Detailed initial baseline results, statistical tests and discussion. |
+| `FIGURES.md` | Index of experiment figures available in the repository. |
+| `requirements.txt` | Python dependencies and package versions. |
+| `results/data_quality/` | Dataset audit and cleaning results. |
+| `results/experiments/` | Initial baseline training experiments. |
+| `results/evaluation/` | Baseline evaluation results. |
+| `results/encoder_comparison/` | Development results for three image encoders across three seeds. |
+| `results/cross_attention/` | Cross-attention hyperparameter and seed results. |
+| `results/pooled_fusion/` | Pooled fusion hyperparameter and seed results. |
+| `results/modality_dropout/` | Modality dropout training results. |
+| `results/robustness/` | Missing-modality evaluation summaries. |
+| `results/unseen_events/` | Leave-one-event-out results and event comparisons. |
+| `figures/` | Selected baseline and experimental figures. |
+
+### Files kept locally
+
+The following data and model files are not distributed
+through GitHub.
+
+- Original CrisisMMD tweets and images
+- Group-provided shared feature cache
+- Cleaned dataset files
+- Extracted BERT and image feature caches
+- Trained model checkpoints
+- Individual tweet predictions
+
+These files are excluded to avoid redistributing large or
+potentially sensitive data. Reproducing the experiments
+requires obtaining the dataset and feature cache separately,
+as described in the reproduction instructions.
+
 
 ## Environment
 
